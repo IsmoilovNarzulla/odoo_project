@@ -1,0 +1,31 @@
+my_custom_module/
+├── __init__.py
+├── __manifest__.py
+├── models/
+│   ├── __init__.py
+│   └── my_model.py
+├── views/
+│   └── my_model_views.xml
+├── security/
+│   ├── ir.model.access.csv
+│   └── security.xml
+├── data/
+│   └── demo.xml
+├── controllers/
+│   └── main.py
+├── wizards/
+│   └── wizard_example.py
+├── report/
+│   └── report_template.xml
+├── static/
+│   ├── description/
+│   │   └── icon.png
+│   └── src/
+│       ├── css/
+│       ├── js/
+│       └── img/
+├── i18n/
+│   └── en.po
+├── tests/
+│   ├── __init__.py
+│   └── my_test.py
