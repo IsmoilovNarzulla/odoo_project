@@ -10,4 +10,8 @@
     'installable': True,
     'application': False,
     'auto_install': False,
+    'application': True,
+    'application': False,
+    'auto_install': False,
+    'license': 'LGPL-3',
 }

@@ -37,5 +37,9 @@ Talabalar va guruhlarni boshqarish
     'demo': [
         'demo/demo.xml',
     ],
+    'application': True,
+    'application': False,
+    'auto_install': False,
+    'license': 'LGPL-3',
 }
 
