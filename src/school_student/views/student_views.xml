@@ -4,11 +4,13 @@
     <field name="model">school.student</field>
     <field name="arch" type="xml">
       <form string="Talaba">
-        <group>
-          <field name="name"/>
-          <field name="age"/>
-          <field name="phone"/>
-        </group>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="age"/>
+            <field name="phone"/>
+          </group>
+        </sheet>
       </form>
     </field>
   </record>
@@ -25,90 +27,62 @@
     </field>
   </record>
 
+  <record id="view_student_tree" model="ir.ui.view">
+    <field name="name">school.student.tree</field>
+    <field name="model">school.student</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="age"/>
+        <field name="phone"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_student_form" model="ir.ui.view">
+    <field name="name">school.student.form</field>
+    <field name="model">school.student</field>
+    <field name="arch" type="xml">
+      <form string="Student">
+        <sheet>
+          <notebook>
+            <page string="General Information">
+              <group>
+                <field name="name"/>
+                <field name="age"/>
+              </group>
+            </page>
+            <page string="">
+              <group>
+                <field name="phone"/>
+                <field name="bio"/>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
   <record id="action_school_student" model="ir.actions.act_window">
     <field name="name">Talabalar</field>
     <field name="res_model">school.student</field>
     <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+      </p>
+    </field>
   </record>
 
-  <menuitem id="menu_school_root" name="Maktab"/>
+  <menuitem id="menu_school_root"
+            name="School Management"/>
 
-  <menuitem id="menu_school_student" name="Talabalar" parent="menu_school_root"
+  <menuitem id="menu_school_student"
+            name="Talabalar"
+            parent="menu_school_root"
             action="action_school_student"/>
 </odoo>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<odoo>-->
-<!--  <data>-->
-<!--    &lt;!&ndash; explicit list view definition &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--    <record model="ir.ui.view" id="school_student.list">-->
-<!--      <field name="name">school_student list</field>-->
-<!--      <field name="model">school_student.school_student</field>-->
-<!--      <field name="arch" type="xml">-->
-<!--        <list>-->
-<!--          <field name="name"/>-->
-<!--          <field name="value"/>-->
-<!--          <field name="value2"/>-->
-<!--        </list>-->
-<!--      </field>-->
-<!--    </record>-->
-<!--&ndash;&gt;-->
-
-<!--    &lt;!&ndash; actions opening views on models &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--    <record model="ir.actions.act_window" id="school_student.action_window">-->
-<!--      <field name="name">school_student window</field>-->
-<!--      <field name="res_model">school_student.school_student</field>-->
-<!--      <field name="view_mode">list,form</field>-->
-<!--    </record>-->
-<!--&ndash;&gt;-->
-
-<!--    &lt;!&ndash; server action to the one above &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--    <record model="ir.actions.server" id="school_student.action_server">-->
-<!--      <field name="name">school_student server</field>-->
-<!--      <field name="model_id" ref="model_school_student_school_student"/>-->
-<!--      <field name="state">code</field>-->
-<!--      <field name="code">-->
-<!--        action = {-->
-<!--          "type": "ir.actions.act_window",-->
-<!--          "view_mode": "list,form",-->
-<!--          "res_model": model._name,-->
-<!--        }-->
-<!--      </field>-->
-<!--    </record>-->
-<!--&ndash;&gt;-->
-
-<!--    &lt;!&ndash; Top menu item &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--    <menuitem name="school_student" id="school_student.menu_root"/>-->
-<!--&ndash;&gt;-->
-<!--    &lt;!&ndash; menu categories &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--    <menuitem name="Menu 1" id="school_student.menu_1" parent="school_student.menu_root"/>-->
-<!--    <menuitem name="Menu 2" id="school_student.menu_2" parent="school_student.menu_root"/>-->
-<!--&ndash;&gt;-->
-<!--    &lt;!&ndash; actions &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--    <menuitem name="List" id="school_student.menu_1_list" parent="school_student.menu_1"-->
-<!--              action="school_student.action_window"/>-->
-<!--    <menuitem name="Server to list" id="school_student" parent="school_student.menu_2"-->
-<!--              action="school_student.action_server"/>-->
-<!--&ndash;&gt;-->
-<!--  </data>-->
-<!--</odoo>-->

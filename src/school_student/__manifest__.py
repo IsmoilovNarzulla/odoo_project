@@ -5,7 +5,7 @@
     'summary': "Talabalar va guruhlarni boshqarish",
 
     'description': """
-Long description of module's purpose
+Talabalar va guruhlarni boshqarish
     """,
 
     'author': "My Company",
