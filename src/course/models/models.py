@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class course(models.Model):
@@ -18,7 +18,8 @@ class course(models.Model):
     teacher_id = fields.Many2one(
         "school.teacher",
         "O'qituvchi",
-        required=True
+        required=True,
+        tracking=True
     )
 
     student_ids = fields.Many2many(
@@ -31,5 +32,17 @@ class course(models.Model):
 
     group_id = fields.Many2one(
         "school.group",
-        "Guruh"
+        "Guruh",
+        tracking=True
     )
+
+    student_count = fields.Integer(
+        "Talabalar soni",
+        compute='_compute_student_count',
+        store=True
+    )
+
+    @api.depends('student_ids')
+    def _compute_student_count(self):
+        for course in self:
+            course.student_count = len(course.student_ids)

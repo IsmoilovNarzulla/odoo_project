@@ -16,11 +16,11 @@ class product_line(models.Model):
         compute="_compute_total_price"
     )
 
-    field_name = fields.Float(
-        string="Some Field",
-        compute="_compute_method",
-        store=False,
-    )
+    # field_name = fields.Float(
+    #     string="Some Field",
+    #     compute="_compute_method",
+    #     store=False,
+    # )
 
     @api.depends('price', 'quantity')
     def _compute_total_price(self):
