@@ -1,0 +1,141 @@
+<odoo>
+    <data>
+        <record id="view_uic_sale_order_list" model="ir.ui.view">
+            <field name="name">uic.sale.order.list</field>
+            <field name="model">uic.sale.order</field>
+            <field name="arch" type="xml">
+                <list string="Sotuv buyurtmalari">
+                    <field name="name"/>
+                    <field name="date_order" widget="datetime"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total"/>
+                    <field name="state" widget="selection"/>
+                    <field name="create_date" widget="datetime"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_uic_sale_order_form" model="ir.ui.view">
+            <field name="name">uic.sale.order.form</field>
+            <field name="model">uic.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Sotuv buyurtmasi">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done,canceled"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_confirm" type="object" string="Tasdiqlash" class="btn-primary" states="draft"/>
+                        </div>
+
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="date_order" widget="datetime"/>
+                            </group>
+                            <group>
+                                <field name="amount_total"/>
+                                <field name="amount_tax"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Buyurtma qatorlari">
+                                <field name="order_line_ids">
+                                    <list editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="product_uom_qty"/>
+                                        <field name="price_unit"/>
+                                        <field name="price_total"/>
+                                        <field name="price_tax"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_uic_sale_order_search" model="ir.ui.view">
+            <field name="name">uic.sale.order.search</field>
+            <field name="model">uic.sale.order</field>
+            <field name="arch" type="xml">
+                <search string="Buyurtma qidirish">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+
+                    <separator/>
+
+                    <filter name="draft" string="Qoralama" domain="[('state', '=', 'draft')]"/>
+                    <filter name="confirmed" string="Tasdiqlangan" domain="[('state', '=', 'confirmed')]"/>
+                    <filter name="done" string="Bajarilgan" domain="[('state', '=', 'done')]"/>
+                    <filter name="canceled" string="Bekor qilingan" domain="[('state', '=', 'canceled')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_uic_sale_order_line_list" model="ir.ui.view">
+            <field name="name">uic.sale.order.line.list</field>
+            <field name="model">uic.sale.order.line</field>
+            <field name="arch" type="xml">
+                <list string="Sotuv qatorlari">
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="product_uom_qty"/>
+                    <field name="price_unit"/>
+                    <field name="price_total"/>
+                    <field name="price_tax"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_uic_sale_order_line_form" model="ir.ui.view">
+            <field name="name">uic.sale.order.line.form</field>
+            <field name="model">uic.sale.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Buyurtma qatori">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="order_id"/>
+                                <field name="product_id"/>
+                            </group>
+                            <group>
+                                <field name="product_uom_qty"/>
+                                <field name="price_unit"/>
+                                <field name="price_total"/>
+                                <field name="price_tax"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_uic_sale_order" model="ir.actions.act_window">
+            <field name="name">Sotuv buyurtmalari</field>
+            <field name="res_model">uic.sale.order</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_uic_sale_order_line" model="ir.actions.act_window">
+            <field name="name">Sotuv qatorlari</field>
+            <field name="res_model">uic.sale.order.line</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_uic_sale_root" name="Sotuv"/>
+        <menuitem id="menu_uic_sale_order" name="Buyurtmalar" parent="menu_uic_sale_root" action="action_uic_sale_order"/>
+        <menuitem id="menu_uic_sale_line" name="Buyurtma qatorlari" parent="menu_uic_sale_root" action="action_uic_sale_order_line"/>
+
+    </data>
+</odoo>

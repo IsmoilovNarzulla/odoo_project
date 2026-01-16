@@ -1,0 +1,115 @@
+<odoo>
+  <data>
+    <record id="view_uic_product_list" model="ir.ui.view">
+      <field name="name">uic.product.list</field>
+      <field name="model">uic.product</field>
+      <field name="arch" type="xml">
+        <list string="Mahsulotlar">
+          <field name="name"/>
+          <field name="price"/>
+          <field name="stock_qty"/>
+          <field name="total_value"/>
+<!--          <field name="active" widget="boolean_button"/>-->
+          <field name="ono_to_one"/>
+        </list>
+      </field>
+    </record>
+
+    <record id="view_uic_product_form" model="ir.ui.view">
+      <field name="name">uic.product.form</field>
+      <field name="model">uic.product</field>
+      <field name="arch" type="xml">
+        <form string="Mahsulot">
+<!--          <header>-->
+<!--            <button name="%(action)d" type="action" string="List" class="btn-secondary"/>-->
+<!--          </header>-->
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button name="toggle_active" type="object"
+                      class="oe_stat_button" icon="fa-check"
+                      attrs="{'invisible': [('active', '=', True)]}">
+                <div class="o_stat_info">
+                  <span class="o_stat_text">Faollashtirish</span>
+                </div>
+              </button>
+              <button name="toggle_active" type="object"
+                      class="oe_stat_button" icon="fa-ban"
+                      attrs="{'invisible': [('active', '=', False)]}">
+                <div class="o_stat_info">
+                  <span class="o_stat_text">O'chirish</span>
+                </div>
+              </button>
+            </div>
+
+            <group>
+              <group>
+                <field name="name" class="oe_inline"/>
+<!--                <field name="active" widget="boolean_button"/>-->
+              </group>
+              <group>
+                <field name="price"/>
+                <field name="stock_qty"/>
+                <field name="total_value" readonly="1"/>
+              </group>
+            </group>
+
+            <notebook>
+              <page string="Qo'shimcha ma'lumotlar">
+                <group>
+                  <field name="ono_to_one" widget="many2one"
+                         context="{}" options="{}"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_uic_product_search" model="ir.ui.view">
+      <field name="name">uic.product.search</field>
+      <field name="model">uic.product</field>
+      <field name="arch" type="xml">
+        <search string="Mahsulot qidirish">
+          <field name="name"/>
+          <field name="ono_to_one"/>
+          <separator/>
+          <filter name="active" string="Faol mahsulotlar"
+                  domain="[('active', '=', True)]"/>
+          <filter name="inactive" string="Faol emas"
+                  domain="[('active', '=', False)]"/>
+          <separator/>
+          <filter name="has_stock" string="Zaxirada bor"
+                  domain="[('stock_qty', '>', 0)]"/>
+          <filter name="no_stock" string="Zaxirada yo'q"
+                  domain="[('stock_qty', '=', 0)]"/>
+          <group expand="0" string="Guruhlash">
+            <filter name="group_by_person" string="Shaxs bo'yicha"
+                    context="{'group_by': 'ono_to_one'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <record id="action_uic_product" model="ir.actions.act_window">
+      <field name="name">Mahsulotlar</field>
+      <field name="res_model">uic.product</field>
+      <field name="view_mode">list,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Hali mahsulot qo'shilmagan
+        </p>
+      </field>
+    </record>
+
+
+    <menuitem id="menu_uic_product_root" name="Mahsulotlar"
+              sequence="10"/>
+    <menuitem id="menu_uic_product" name="Mahsulotlar ro'yxati"
+              parent="menu_uic_product_root"
+              action="action_uic_product"
+              sequence="1"/>
+
+  </data>
+</odoo>

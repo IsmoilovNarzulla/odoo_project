@@ -1,0 +1,187 @@
+
+<odoo>
+    <data>
+        <record id="view_uic_customer_list" model="ir.ui.view">
+            <field name="name">uic.customer.list</field>
+            <field name="model">uic.customer</field>
+            <field name="arch" type="xml">
+                <list string="Mijozlar" decoration-danger="credit_limit &lt; 0">
+                    <field name="name" string="Mijoz nomi"/>
+                    <field name="code" string="Mijoz kodi"/>
+                    <field name="discount" string="Chegirma %"/>
+                    <field name="credit_limit" string="Kredit limiti"/>
+                    <field name="email" string="Email"/>
+                    <field name="phone" string="Telefon"/>
+                    <field name="create_date" string="Yaratilgan sana" widget="date"/>
+                    <field name="write_date" string="O'zgartirilgan sana" widget="date"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_uic_customer_form" model="ir.ui.view">
+            <field name="name">uic.customer.form</field>
+            <field name="model">uic.customer</field>
+            <field name="arch" type="xml">
+                <form string="Mijoz">
+<!--                    <header>-->
+<!--                        <button name="%(action)d" type="action" string="Ro'yxat" class="btn-secondary"/>-->
+<!--                        <button name="action_calculate_discount" type="object"-->
+<!--                                string="Chegirmani hisoblash" class="btn-primary"/>-->
+<!--                    </header>-->
+
+                    <sheet>
+<!--                        <div class="oe_button_box" name="button_box">-->
+<!--                            <button class="oe_stat_button" type="action"-->
+<!--                                    icon="fa-money"-->
+<!--                                    name="%('action_related_transactions')d"-->
+<!--                                    string="Tranzaksiyalar">-->
+<!--                                <div class="o_stat_info">-->
+<!--                                    <field name="credit_limit" widget="monetary"-->
+<!--                                           options="{'currency_field': 'currency_id'}"-->
+<!--                                           class="o_stat_text"/>-->
+<!--                                    <span class="o_stat_text">Kredit limiti</span>-->
+<!--                                </div>-->
+<!--                            </button> -->-->
+<!--                        </div>-->
+
+                        <group>
+                            <group string="Asosiy ma'lumotlar">
+                                <field name="name" class="oe_inline" string="Mijoz nomi"/>
+                                <field name="code" string="Mijoz kodi"/>
+                            </group>
+                            <group string="Moliyaviy ma'lumotlar">
+                                <field name="discount" string="Chegirma %"/>
+                                <field name="credit_limit" string="Kredit limiti"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Aloqa ma'lumotlari">
+                                <group>
+                                    <field name="email" string="Email"/>
+                                    <field name="phone" string="Telefon"/>
+                                    <field name="address" string="Manzil"/>
+                                </group>
+                            </page>
+
+                            <page string="Tarix">
+                                <group>
+                                    <label for="create_uid" string="Yaratuvchi"/>
+                                    <div>
+                                        <field name="create_uid" string="Yaratuvchi" readonly="1"/>
+                                        <field name="create_date" string="Yaratilgan sana" readonly="1" widget="datetime"/>
+                                    </div>
+                                    <label for="write_uid" string="Oxirgi o'zgartiruvchi"/>
+                                    <div>
+                                        <field name="write_uid" string="Oxirgi o'zgartiruvchi" readonly="1"/>
+                                        <field name="write_date" string="Oxirgi o'zgartirilgan sana" readonly="1" widget="datetime"/>
+                                    </div>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_uic_customer_search" model="ir.ui.view">
+            <field name="name">uic.customer.search</field>
+            <field name="model">uic.customer</field>
+            <field name="arch" type="xml">
+                <search string="Mijoz qidirish">
+                    <!-- Qidiruv maydonlari -->
+                    <field name="name" string="Mijoz nomi"/>
+                    <field name="code" string="Mijoz kodi"/>
+                    <field name="email" string="Email"/>
+                    <field name="phone" string="Telefon"/>
+
+                    <separator/>
+
+                    <!-- Filterlar -->
+                    <filter name="high_discount" string="Yuqori chegirma (&gt;10%)"
+                            domain="[('discount', '&gt;', 10)]"/>
+                    <filter name="with_credit" string="Kredit limiti bor"
+                            domain="[('credit_limit', '&gt;', 0)]"/>
+                    <filter name="no_credit" string="Kredit limiti yo'q"
+                            domain="[('credit_limit', '=', 0)]"/>
+                    <filter name="over_limit" string="Kredit limitidan oshgan"
+                            domain="[('credit_limit', '&lt;', 0)]"/>
+
+                    <separator/>
+
+                    <!-- Guruhlash -->
+                    <group expand="0" string="Guruhlash">
+                        <filter name="group_by_discount" string="Chegirma % bo'yicha"
+                                context="{'group_by': 'discount'}"/>
+                        <filter name="group_by_credit" string="Kredit limiti bo'yicha"
+                                context="{'group_by': 'credit_limit'}"/>
+                    </group>
+
+                    <!-- Favorit filterlar -->
+                    <filter name="my_customers" string="Mening mijozlarim"
+                            domain="[('create_uid', '=', uid)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Asosiy Action -->
+        <record id="action_uic_customer" model="ir.actions.act_window">
+            <field name="name">Mijozlar</field>
+            <field name="res_model">uic.customer</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="search_view_id" ref="view_uic_customer_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Hali mijoz qo'shilmagan
+                </p>
+                <p>
+                    Yangi mijoz qo'shish uchun "Yaratish" tugmasini bosing.
+                </p>
+            </field>
+        </record>
+
+        <!-- Kanban View (agar kerak bo'lsa) -->
+        <record id="view_uic_customer_kanban" model="ir.ui.view">
+            <field name="name">uic.customer.kanban</field>
+            <field name="model">uic.customer</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="discount"/>
+                    <field name="credit_limit"/>
+                    <field name="email"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_card_header">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_card_content">
+                                    <div>Chegirma: <field name="discount"/>%</div>
+                                    <div>Kredit: <field name="credit_limit"/></div>
+                                    <div t-if="record.email.raw_value">
+                                        Email: <field name="email"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Menu Structure -->
+        <menuitem id="menu_uic_sales_root" name="Sotuv" sequence="20"/>
+        <menuitem id="menu_uic_customer_root" name="Mijozlar"
+                  parent="menu_uic_sales_root" sequence="1"/>
+        <menuitem id="menu_uic_customer" name="Mijozlar boshqaruvi"
+                  parent="menu_uic_customer_root"
+                  action="action_uic_customer"
+                  sequence="1"/>
+
+
+
+</data>
+        </odoo>
