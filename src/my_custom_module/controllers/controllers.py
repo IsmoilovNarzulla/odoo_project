@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # from odoo import http
-from odoo.odoo import http
+from odoo import http
 
 
-class MyCustomModule(http.Controller):
+class MyModel(http.Controller):
     @http.route('/my_custom_module/my_custom_module', auth='public')
     def index(self, **kw):
         return "Hello, world"
@@ -12,7 +12,7 @@ class MyCustomModule(http.Controller):
     def list(self, **kw):
         return http.request.render('my_custom_module.listing', {
             'root': '/my_custom_module/my_custom_module',
-            'objects': http.request.env['my_custom_module.my_custom_module'].search([]),
+            'objects': http.request.env['my_custom_module.my_model'].search([]),
         })
 
     @http.route('/my_custom_module/my_custom_module/objects/<model("my_custom_module.my_custom_module"):obj>', auth='public')

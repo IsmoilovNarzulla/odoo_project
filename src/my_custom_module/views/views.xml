@@ -4,12 +4,12 @@
 
     <record model="ir.ui.view" id="my_custom_module.list">
       <field name="name">my_custom_module list</field>
-      <field name="model">my_custom_module.my_custom_module</field>
+      <field name="model">my_custom_module.my_model</field>
       <field name="arch" type="xml">
         <list>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+<!--          <field name="name"/>-->
+<!--          <field name="value"/>-->
+<!--          <field name="value2"/>-->
         </list>
       </field>
     </record>
@@ -19,7 +19,7 @@
 
     <record model="ir.actions.act_window" id="my_custom_module.action_window">
       <field name="name">my_custom_module window</field>
-      <field name="res_model">my_custom_module.my_custom_module</field>
+      <field name="res_model">my_custom_module.my_model</field>
       <field name="view_mode">list,form</field>
     </record>
 
@@ -28,7 +28,7 @@
 
     <record model="ir.actions.server" id="my_custom_module.action_server">
       <field name="name">my_custom_module server</field>
-      <field name="model_id" ref="model_my_custom_module_my_custom_module"/>
+      <field name="model_id" ref="model_my_custom_module_my_model"/>
       <field name="state">code</field>
       <field name="code">
         action = {

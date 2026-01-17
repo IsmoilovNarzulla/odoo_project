@@ -3,8 +3,8 @@
 from odoo import models, fields, api
 
 
-class my_custom_module(models.Model):
-    _name = 'my_custom_module.my_custom_module'
+class MyModel(models.Model):
+    _name = 'my_custom_module.my_model'
     _description = 'my_custom_module.my_custom_module'
 
     name = fields.Char()

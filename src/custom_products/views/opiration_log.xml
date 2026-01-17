@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- list View -->
+        <record id="view_operation_log_list" model="ir.ui.view">
+            <field name="name">operation.log.list</field>
+            <field name="model">operation.log</field>
+            <field name="arch" type="xml">
+                <list string="Operatsiya Loglari" decoration-danger="operation_type == 'unlink'"
+                      decoration-success="operation_type == 'create'"
+                      decoration-warning="operation_type == 'write'"
+                      decoration-info="operation_type == 'read'">
+
+                    <field name="create_date" string="Vaqt" widget="datetime"/>
+                    <field name="operation_type" string="Operatsiya" widget="badge"
+                           decoration-success="operation_type == 'create'"
+                           decoration-warning="operation_type == 'write'"
+                           decoration-danger="operation_type == 'unlink'"
+                           decoration-info="operation_type == 'read'"/>
+
+                    <field name="model_name" string="Model"/>
+                    <field name="record_name" string="Yozuv"/>
+                    
+                    <field name="ip_address" string="IP Manzil"/>
+
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_operation_log_form" model="ir.ui.view">
+            <field name="name">operation.log.form</field>
+            <field name="model">operation.log</field>
+            <field name="arch" type="xml">
+                <form string="Operatsiya Logi">
+                    <header>
+                        <field name="operation_type" widget="badge"
+                               decoration-success="operation_type == 'create'"
+                               decoration-warning="operation_type == 'write'"
+                               decoration-danger="operation_type == 'unlink'"
+                               decoration-info="operation_type == 'read'"/>
+                        
+
+                        <button name="%(ir.actions.act_window)d"
+                                string="Yopish" class="btn-secondary"
+                                special="cancel"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="create_date" string="Vaqt" widget="datetime" readonly="1"/>
+                                <field name="operation_type" string="Operatsiya Turi" readonly="1"/>
+                                <field name="model_name" string="Model Nomi" readonly="1"/>
+                                <field name="record_id" string="Yozuv IDsi" readonly="1"/>
+                            </group>
+                            
+                        </group>
+
+                        <!-- Notebook (Tablar) -->
+                        <notebook>
+                            <page string="Qiymatlar">
+                                <group>
+                                    <group string="Eski Qiymatlar">
+                                        <field name="old_values" widget="html"
+                                               readonly="1" nolabel="1">
+                                            <div style="font-family: monospace; white-space: pre-wrap; padding: 10px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                                                <t t-esc="record.old_values or 'Qiymatlar mavjud emas'"/>
+                                            </div>
+                                        </field>
+                                    </group>
+
+                                    <group string="Yangi Qiymatlar">
+                                        <field name="new_values" widget="html"
+                                               readonly="1" nolabel="1">
+                                            <div style="font-family: monospace; white-space: pre-wrap; padding: 10px; background-color: #f0f8ff; border: 1px solid #b8daff; border-radius: 5px;">
+                                                <t t-esc="record.new_values or 'Qiymatlar mavjud emas'"/>
+                                            </div>
+                                        </field>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Qo'shimcha Ma'lumotlar">
+                                <group>
+                                    <field name="create_uid" string="Yaratgan" readonly="1"/>
+                                    <field name="write_uid" string="O'zgartirgan" readonly="1"/>
+                                    <field name="write_date" string="O'zgartirilgan vaqt" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_operation_log_search" model="ir.ui.view">
+            <field name="name">operation.log.search</field>
+            <field name="model">operation.log</field>
+            <field name="arch" type="xml">
+                <search string="Operatsiya Loglarini Qidirish">
+                    <!-- Filterlar -->
+                    <filter name="filter_today" string="Bugun"
+                            domain="[('create_date', '>=', context_today().strftime('%Y-%m-%d'))]"/>
+
+                    <filter name="filter_this_week" string="Bu Hafta"
+                            domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+
+                    <filter name="filter_create" string="Faqat Yaratish"
+                            domain="[('operation_type', '=', 'create')]"/>
+
+                    <filter name="filter_write" string="Faqat Yangilash"
+                            domain="[('operation_type', '=', 'write')]"/>
+
+                    <filter name="filter_unlink" string="Faqat O'chirish"
+                            domain="[('operation_type', '=', 'unlink')]"/>
+
+                    <separator/>
+
+                    <!-- Guruhlash -->
+                    <group expand="0" string="Guruhlash">
+                        <filter name="group_by_user" string="Foydalanuvchi bo'yicha"
+                                context="{'group_by': 'user_id'}"/>
+                        <filter name="group_by_model" string="Model bo'yicha"
+                                context="{'group_by': 'model_name'}"/>
+                        <filter name="group_by_operation" string="Operatsiya bo'yicha"
+                                context="{'group_by': 'operation_type'}"/>
+                        <filter name="group_by_date" string="Kun bo'yicha"
+                                context="{'group_by': 'create_date:day'}"/>
+                    </group>
+
+                    <!-- Qidiruv maydonlari -->
+                    <field name="name" string="Operatsiya Nomi"/>
+                    <field name="model_name" string="Model Nomi"/>
+                    <field name="record_name" string="Yozuv Nomi"/>
+                    <field name="user_id" string="Foydalanuvchi"/>
+                    <field name="operation_type" string="Operatsiya Turi"/>
+                    <field name="ip_address" string="IP Manzil"/>
+
+                    <!-- Filtr saqlash -->
+                    <filter name="my_logs" string="Mening Loglarim"
+                            domain="[('user_id', '=', uid)]"/>
+
+                    <!-- To'liq matn qidiruv -->
+                    <field name="old_values" string="Eski Qiymatlarda qidirish"/>
+                    <field name="new_values" string="Yangi Qiymatlarda qidirish"/>
+
+                </search>
+            </field>
+        </record>
+
+        <!-- Kanban View (Opsional) -->
+        <record id="view_operation_log_kanban" model="ir.ui.view">
+            <field name="name">operation.log.kanban</field>
+            <field name="model">operation.log</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="operation_type"/>
+                    <field name="create_date"/>
+                    <field name="model_name"/>
+                    <field name="record_name"/>
+                    <field name="user_id"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb-2">
+                                    <div class="o_kanban_record_header">
+                                        <strong>
+                                            <field name="operation_type" widget="badge"/>
+                                        </strong>
+                                        <small class="float-right">
+                                            <field name="create_date" widget="datetime"/>
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="o_kanban_record_body">
+                                    <div>
+                                        <strong><field name="model_name"/></strong>
+                                        <br/>
+                                        <small>
+                                            <field name="record_name"/>
+                                        </small>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <small>
+                                            <field name="name"/>
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="o_kanban_record_footer">
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_operation_log" model="ir.actions.act_window">
+            <field name="name">Operatsiya Loglari</field>
+            <field name="res_model">operation.log</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_filter_today': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Hech qanday operatsiya logi mavjud emas.
+                </p>
+                <p>
+                    Barcha sistemadagi operatsiyalar (yaratish, yangilash, o'chirish)
+                    shu yerda log qilinadi.
+                </p>
+            </field>
+        </record>
+
+        <!-- Server Action (Foydali amallar) -->
+        <record id="action_export_logs" model="ir.actions.server">
+            <field name="name">Loglarni Export qilish</field>
+            <field name="model_id" ref="model_operation_log"/>
+            <field name="binding_model_id" ref="model_operation_log"/>
+            <field name="binding_type">action</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    action = records.action_export_to_excel()
+            </field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="menu_operation_log_main"
+                  name="Audit"
+                  sequence="100"
+                  groups="base.group_system"/>
+
+        <menuitem id="menu_operation_log"
+                  name="Operatsiya Loglari"
+                  parent="menu_operation_log_main"
+                  action="action_operation_log"
+                  sequence="10"
+                  groups="base.group_user"/>
+
+        <!-- Dashboard View -->
+        <record id="view_operation_log_dashboard" model="ir.ui.view">
+            <field name="name">operation.log.dashboard</field>
+            <field name="model">operation.log</field>
+            <field name="arch" type="xml">
+                <form string="Operatsiya Log Dashboard">
+                    <sheet>
+                        <div class="container-fluid">
+                            <!-- Statistika kartalar -->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bugungi operatsiyalar</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Yaratishlar</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Yangilashlar</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">O'chirishlar</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grafiklar -->
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title mb-0">Operatsiyalar statistikasi (30 kun)</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Dashboard Action -->
+        <record id="action_operation_log_dashboard" model="ir.actions.act_window">
+            <field name="name">Log Dashboard</field>
+            <field name="res_model">operation.log</field>
+            <field name="view_mode">dashboard</field>
+            <field name="view_id" ref="view_operation_log_dashboard"/>
+            <field name="target">current</field>
+        </record>
+
+        <!-- Dashboard Menu -->
+        <menuitem id="menu_operation_log_dashboard"
+                  name="Dashboard"
+                  parent="menu_operation_log_main"
+                  action="action_operation_log_dashboard"
+                  sequence="5"
+                  groups="base.group_system"/>
+
+    </data>
+</odoo>
