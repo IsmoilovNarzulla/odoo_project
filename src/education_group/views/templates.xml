@@ -1,0 +1,165 @@
+<!-- views/report_templates.xml -->
+<odoo>
+    <!-- Report Template -->
+    <template id="report_group_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <!-- Sarlavha -->
+                <div class="header">
+                    <div class="row">
+                        <div class="col-6">
+                            <h1>O'QUV GURUH HISOBOTI</h1>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span style="font-size: 14px;">
+                                Sanа: <span t-esc="datetime.datetime.now().strftime('%d-%m-%Y')"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Har bir document (guruh) uchun -->
+                <t t-foreach="docs" t-as="g">
+                    <div class="page">
+                        <!-- Asosiy ma'lumotlar -->
+                        <div class="card my-3">
+                            <div class="card-body">
+                                <h2 class="card-title" t-esc="g.name"/>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <th width="40%">Guruh kodi:</th>
+                                                <td t-esc="g.code"/>
+                                            </tr>
+                                            <tr>
+                                                <th>O'qituvchi:</th>
+                                                <td t-esc="g.teacher_id.name"/>
+                                            </tr>
+                                            <tr>
+                                                <th>Holati:</th>
+                                                <td>
+                                                    <span t-if="g.status == 'draft'" class="badge badge-secondary">Draft</span>
+                                                    <span t-elif="g.status == 'active'" class="badge badge-success">Faol</span>
+                                                    <span t-elif="g.status == 'completed'" class="badge badge-primary">Yakunlangan</span>
+                                                    <span t-else="" class="badge badge-danger">Bekor qilingan</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <th width="40%">Boshlanish sanasi:</th>
+                                                <td t-esc="g.start_date"/>
+                                            </tr>
+                                            <tr>
+                                                <th>Tugash sanasi:</th>
+                                                <td t-esc="g.end_date"/>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Izoh -->
+                                <div t-if="g.description" class="mt-3">
+                                    <h5>Izoh:</h5>
+                                    <p t-raw="g.description"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Talabalar ro'yxati -->
+                        <div class="mt-4">
+                            <h3>Talabalar ro'yxati</h3>
+
+                            <t t-if="g.student_ids">
+                                <table class="table table-bordered table-sm">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Ism</th>
+                                            <th>Telefon</th>
+                                            <th>Email</th>
+                                            <th>Tug'ilgan sana</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="g.student_ids" t-as="student" t-key="student.id">
+                                            <tr>
+                                                <td t-esc="student_index + 1"/>
+                                                <td t-esc="student.name"/>
+                                                <td t-esc="student.phone"/>
+                                                <td t-esc="student.email"/>
+                                                <td t-esc="student.birth_date"/>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="text-right">
+                                                <strong>Jami talabalar: <span t-esc="len(g.student_ids)"/></strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </t>
+
+                            <t t-else="">
+                                <div class="alert alert-warning">
+                                    Ushbu guruhda hali talabalar mavjud emas.
+                                </div>
+                            </t>
+                        </div>
+
+                        <!-- Statistik ma'lumotlar -->
+                        <div class="mt-4">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <h4>Statistika</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title" t-esc="len(g.student_ids)"/>
+                                            <p class="card-text">Talabalar soni</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title" t-esc="g.start_date"/>
+                                            <p class="card-text">Boshlanish sanasi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title" t-esc="g.end_date"/>
+                                            <p class="card-text">Tugash sanasi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer qismi -->
+                        <div class="mt-5 pt-5 border-top">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tasdiqladi: ___________________</p>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <p>Imzo: ___________________</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

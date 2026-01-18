@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="education_group.list">
+      <field name="name">EducationGroup list</field>
+      <field name="model">education_group.education_group</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="code"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="teacher_id"/>
+          <field name="student_ids"/>
+          <field name="status"/>
+        </list>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="education_group.action_window">
+      <field name="name">EducationGroup window</field>
+      <field name="res_model">education_group.education_group</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="education_group.action_server">
+      <field name="name">EducationGroup server</field>
+      <field name="model_id" ref="model_education_group_education_group"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="EducationGroup" id="education_group.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="education_group.menu_1" parent="education_group.menu_root"/>
+    <menuitem name="Menu 2" id="education_group.menu_2" parent="education_group.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="education_group.menu_1_list" parent="education_group.menu_1"
+              action="education_group.action_window"/>
+    <menuitem name="Server to list" id="education_group" parent="education_group.menu_2"
+              action="education_group.action_server"/>
+
+  </data>
+</odoo>
