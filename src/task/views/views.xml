@@ -1,0 +1,91 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="task.list">
+      <field name="name">task list</field>
+      <field name="model">task.task</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="task.action_window">
+      <field name="name">task window</field>
+      <field name="res_model">task.task</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="task.action_server">
+      <field name="name">task server</field>
+      <field name="model_id" ref="model_task_task"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+    <record id="task_kanban" model="ir.ui.view">
+      <field name="name">task_kanban</field>
+      <field name="model">task.task</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="state_id" records_draggable="0" quick_create="1"
+                quick_create_view="uic.task_quick_create_form">
+          <field name="name"/>
+          <progressbar field="status" colors='{"not_started": "danger", "started": "info", "finished": "success"}' sum_field="plan_hours"/>
+
+          <templates>
+            <t t-name="card">
+              <field name="name"/>
+              <field name="priority" widget="priority"/>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="task_quick_create_form" model="ir.ui.view">
+      <field name="name">task_quick_create_form</field>
+      <field name="model">task.task</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="plan_hours"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="task" id="task.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="task.menu_1" parent="task.menu_root"/>
+    <menuitem name="Menu 2" id="task.menu_2" parent="task.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="task.menu_1_list" parent="task.menu_1"
+              action="task.action_window"/>
+    <menuitem name="Server to list" id="task" parent="task.menu_2"
+              action="task.action_server"/>
+
+  </data>
+</odoo>

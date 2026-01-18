@@ -12,3 +12,4 @@ from .custom_products import *
 from productpriceupdate_wizard import *
 from sales_report__wizard import *
 from contactexport_wizard import *
+from task import *
