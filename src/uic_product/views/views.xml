@@ -9,7 +9,6 @@
           <field name="price"/>
           <field name="stock_qty"/>
           <field name="total_value"/>
-<!--          <field name="active" widget="boolean_button"/>-->
           <field name="ono_to_one"/>
         </list>
       </field>
@@ -20,21 +19,18 @@
       <field name="model">uic.product</field>
       <field name="arch" type="xml">
         <form string="Mahsulot">
-<!--          <header>-->
-<!--            <button name="%(action)d" type="action" string="List" class="btn-secondary"/>-->
-<!--          </header>-->
           <sheet>
             <div class="oe_button_box" name="button_box">
               <button name="toggle_active" type="object"
                       class="oe_stat_button" icon="fa-check"
-                      attrs="{'invisible': [('active', '=', True)]}">
+                      invisible="active">
                 <div class="o_stat_info">
                   <span class="o_stat_text">Faollashtirish</span>
                 </div>
               </button>
               <button name="toggle_active" type="object"
                       class="oe_stat_button" icon="fa-ban"
-                      attrs="{'invisible': [('active', '=', False)]}">
+                      invisible="not active">
                 <div class="o_stat_info">
                   <span class="o_stat_text">O'chirish</span>
                 </div>
@@ -44,7 +40,6 @@
             <group>
               <group>
                 <field name="name" class="oe_inline"/>
-<!--                <field name="active" widget="boolean_button"/>-->
               </group>
               <group>
                 <field name="price"/>

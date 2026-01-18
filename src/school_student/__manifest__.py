@@ -8,7 +8,7 @@
 Talabalar va guruhlarni boshqarish
     """,
 
-    'author': "My Company",
+    'author': "Narzulla",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -18,7 +18,7 @@ Talabalar va guruhlarni boshqarish
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail','school_group','school_teacher','course'],
+    'depends': ['base','mail','course',],#'school_group','school_student','school_teacher','course',
     'data': [
         'security/ir.model.access.csv',
         'views/student_views.xml',

@@ -13,17 +13,18 @@ class SchoolGroup(models.Model):
     code = fields.Char("Guruh kodi", required=True)
 
     course_id = fields.Many2one(
-        "course.course",
+        "course.kurslar",
         "Kurs",
         required=True,
         ondelete="cascade",
         tracking=True
     )
-    teacher_id = fields.Many2one(
-        "school.teacher",
-        "Guruh rahbari",
-        tracking=True
-    )
+    # teacher_id = fields.Many2one(
+    #     "school.teacher",
+    #     "Guruh rahbari",
+    #     tracking=True
+    # )
+
     student_ids = fields.One2many(
         "school.student",
         "group_id",

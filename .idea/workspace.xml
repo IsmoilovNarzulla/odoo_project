@@ -5,26 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40fef027-d851-43e4-8efa-6fcf6b590b70" name="Changes" comment="odoo darslari6">
-      <change afterPath="$PROJECT_DIR$/src/school_student/data/sequence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odoo" beforeDir="false" afterPath="$PROJECT_DIR$/odoo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odoo/addons/web/static/src/model/relational_model/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/odoo/addons/web/static/src/model/relational_model/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odoo/odoo/addons/base/tests/test_osv.py" beforeDir="false" afterPath="$PROJECT_DIR$/odoo/odoo/addons/base/tests/test_osv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/__manifest__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/course/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/course/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/course/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/custom_products/models/res_partner.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/custom_products/models/res_partner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/custom_products/views/opiration_log.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/custom_products/views/opiration_log.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/document/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/__manifest__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/document/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_custom_module/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_custom_module/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_module/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_module/__manifest__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/product_line/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/product_line/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/document/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_custom_module/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_custom_module/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_custom_module/modul strukturasi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_model/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_model/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/product_line/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/product_line/security/ir.model.access.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/product_line/views/views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/product_line/views/views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sale_order/models/advanced_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sale_order/models/advanced_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sale_order/models/cleanup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sale_order/models/cleanup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sale_order/models/order_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sale_order/models/order_batch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sale_order/models/order_wizard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sale_order/models/order_wizard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sale_order/views/advanced_order_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sale_order/views/advanced_order_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sale_order/views/sale_order_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sale_order/views/sale_order_views.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_group/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_group/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/school_group/controllers/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_group/controllers/controllers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_group/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_group/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/school_group/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_group/security/ir.model.access.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_student/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_student/__manifest__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_student/models/school_student.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_student/models/school_student.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/school_student/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_student/security/ir.model.access.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_student/views/student_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_student/views/student_views.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_teacher/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_teacher/__manifest__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/school_teacher/models/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/school_teacher/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_teacher/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/school_teacher/models/schol_teacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_teacher/models/schol_teacher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/school_teacher/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/school_teacher/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/models/employe.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/models/employe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/models/partner.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/models/partner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/models/product_with_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/models/product_with_tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/models/tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/models/tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/views/customer_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/views/customer_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/views/employee_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/views/employee_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/views/sale_order_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/views/sale_order_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uic_product/views/views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uic_product/views/views.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,32 +96,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "user7",
-    "last_opened_file_path": "/home/narzulla/odoo_project/third-party",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;user10&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/narzulla/odoo_project/third-party&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/custom_products/views" />
+      <recent name="$PROJECT_DIR$/src/custom_products/models" />
       <recent name="$PROJECT_DIR$/src/school_teacher/models" />
       <recent name="$PROJECT_DIR$/src/school_student/models" />
     </key>
@@ -153,7 +178,12 @@
       <workItem from="1768239514299" duration="9487000" />
       <workItem from="1768273371519" duration="15913000" />
       <workItem from="1768367376611" duration="1982000" />
-      <workItem from="1768369384436" duration="15254000" />
+      <workItem from="1768369384436" duration="27153000" />
+      <workItem from="1768453610889" duration="35806000" />
+      <workItem from="1768531588996" duration="3324000" />
+      <workItem from="1768541188511" duration="29477000" />
+      <workItem from="1768633110140" duration="36370000" />
+      <workItem from="1768710047282" duration="4288000" />
     </task>
     <task id="LOCAL-00001" summary="odoo darslari1">
       <option name="closed" value="true" />
@@ -212,6 +242,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="odoo darslari6" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/odoo_project$main.coverage" NAME="main Coverage Results" MODIFIED="1768307840275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/odoo_project$main.coverage" NAME="main Coverage Results" MODIFIED="1768718220474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

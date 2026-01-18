@@ -1,209 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="view_uic_employee_list" model="ir.ui.view">
-            <field name="name">uic.employee.list</field>
-            <field name="model">uic.employee</field>
-            <field name="arch" type="xml">
-                <list string="Xodimlar" decoration-info="department == 'management'" decoration-warning="salary &lt;= 0">
-                    <field name="employee_id" string="Xodim ID"/>
-                    <field name="name" string="Ism"/>
-                    <field name="department" string="Bo'lim" widget="selection"/>
-                    <field name="salary" string="Maosh"/>
-                    <field name="hire_date" string="Ishga kirgan sana" widget="date"/>
-                    <field name="phone" string="Telefon"/>
-                    <field name="email" string="Email"/>
-                </list>
-            </field>
-        </record>
+    <record id="view_uic_employee_list" model="ir.ui.view">
+        <field name="name">uic.employee.list</field>
+        <field name="model">uic.employee</field>
+        <field name="arch" type="xml">
+            <list string="Xodimlar">
+                <field name="employee_id" string="Xodim ID"/>
+                <field name="department" string="Bo'lim"/>
+                <field name="salary" string="Maosh"/>
+                <field name="hire_date" string="Ishga kirgan sana" widget="date"/>
+            </list>
+        </field>
+    </record>
 
-        <record id="view_uic_employee_form" model="ir.ui.view">
-            <field name="name">uic.employee.form</field>
-            <field name="model">uic.employee</field>
-            <field name="arch" type="xml">
-                <form string="Xodim">
-                    <header>
-                        <button name="%('action')d" type="action" string="Ro'yxat" class="btn-secondary"/>
-                    </header>
-
-                    <sheet>
-                        <div class="oe_title">
-                            <label for="name" string="Xodim"/>
-                            <h1><field name="name"/></h1>
-                            <h2><field name="employee_id"/></h2>
-                        </div>
-
-                        <notebook>
-                            <page string="Asosiy ma'lumotlar">
-                                <group>
-                                    <group string="Xodim ma'lumotlari">
-                                        <field name="employee_id" string="Xodim ID" required="1"/>
-                                        <field name="department" string="Bo'lim" widget="radio" options="{'horizontal': true}"/>
-                                        <field name="salary" string="Oylik maosh"/>
-                                        <field name="hire_date" string="Ishga kirgan sana" widget="date"/>
-                                    </group>
-
-                                    <group string="Shaxsiy ma'lumotlar" attrs="{'invisible': [('person_id', '=', False)]}">
-                                        <field name="person_id" invisible="1"/>
-                                        <field name="name" string="To'liq ism" attrs="{'required': True}"/>
-                                        <field name="birth_date" string="Tug'ilgan sana" widget="date"/>
-                                        <field name="gender" string="Jinsi"/>
-                                    </group>
-                                </group>
-                            </page>
-
-                            <page string="Aloqa ma'lumotlari" attrs="{'invisible': [('person_id', '=', False)]}">
-                                <group>
-                                    <group>
-                                        <field name="phone" string="Telefon" widget="phone"/>
-                                        <field name="email" string="Email" widget="email"/>
-                                    </group>
-<!--                                    <group>-->
-<!--                                        <field name="address" string="Manzil" widget="contact"/>-->
-<!--                                        <field name="city" string="Shahar"/>-->
-<!--                                        <field name="country" string="Davlat"/>-->
-<!--                                    </group>-->
-                                </group>
-                            </page>
-
-                            <page string="Qo'shimcha ma'lumotlar">
-                                <group>
-                                    <group string="Statistika">
-                                        <field name="create_date" string="Yaratilgan sana" readonly="1" widget="datetime"/>
-                                        <field name="write_date" string="O'zgartirilgan sana" readonly="1" widget="datetime"/>
-                                    </group>
-<!--                                    <group string="Izoh">-->
-<!--                                        <field name="notes" string="Izohlar" nolabel="1"/>-->
-<!--                                    </group>-->
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-
-                    <div class="oe_chatter">
-<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
-<!--                        <field name="message_ids" widget="mail_thread"/>-->
+    <record id="view_uic_employee_form" model="ir.ui.view">
+        <field name="name">uic.employee.form</field>
+        <field name="model">uic.employee</field>
+        <field name="arch" type="xml">
+            <form string="Xodim">
+                <sheet>
+                    <div class="oe_title">
+                        <h2><field name="employee_id"/></h2>
                     </div>
-                </form>
-            </field>
-        </record>
 
-        <record id="view_uic_employee_search" model="ir.ui.view">
-            <field name="name">uic.employee.search</field>
-            <field name="model">uic.employee</field>
-            <field name="arch" type="xml">
-                <search string="Xodim qidirish">
-                    <!-- Qidiruv maydonlari -->
-                    <field name="name" string="Ism"/>
-                    <field name="employee_id" string="Xodim ID"/>
-                    <field name="email" string="Email"/>
-                    <field name="phone" string="Telefon"/>
+                    <notebook>
+                        <page string="Asosiy ma'lumotlar">
+                            <group>
+                                <group string="Xodim ma'lumotlari">
+                                    <field name="employee_id" string="Xodim ID" required="1"/>
+                                    <field name="department" string="Bo'lim" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="salary" string="Oylik maosh"/>
+                                    <field name="hire_date" string="Ishga kirgan sana" widget="date"/>
+                                </group>
 
-                    <separator/>
 
-                    <!-- Filterlar -->
-                    <filter name="sales_department" string="Sotuv bo'limi"
-                            domain="[('department', '=', 'sales')]"/>
-                    <filter name="purchase_department" string="Xarid bo'limi"
-                            domain="[('department', '=', 'purchase')]"/>
-                    <filter name="accounting_department" string="Buxgalteriya"
-                            domain="[('department', '=', 'accounting')]"/>
-                    <filter name="warehouse_department" string="Ombor"
-                            domain="[('department', '=', 'warehouse')]"/>
-                    <filter name="management_department" string="Rahbariyat"
-                            domain="[('department', '=', 'management')]"/>
+                                <group string="Shaxsiy ma'lumotlar" invisible="not person_id">
+                                    <field name="person_id" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
 
-                    <separator/>
+                        <page string="Aloqa ma'lumotlari" invisible="not person_id">
+                            <group>
+                                <group>
+                                </group>
+                            </group>
+                        </page>
 
-                    <filter name="high_salary" string="Yuqori maosh (&gt; 5000)"
-                            domain="[('salary', '&gt;', 5000)]"/>
-                    <filter name="no_salary" string="Maosh kiritilmagan"
-                            domain="[('salary', '=', 0)]"/>
+                        <page string="Qo'shimcha ma'lumotlar">
+                            <group>
+                                <group string="Statistika">
+                                    <field name="create_date" string="Yaratilgan sana" readonly="1"/>
+                                    <field name="write_date" string="O'zgartirilgan sana" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-                    <separator/>
+    <record id="view_uic_employee_search" model="ir.ui.view">
+        <field name="name">uic.employee.search</field>
+        <field name="model">uic.employee</field>
+        <field name="arch" type="xml">
+            <search string="Xodim qidirish">
+                <field name="employee_id" string="Xodim ID"/>
+                <!--<field name="name" string="Ism"/>-->
+                <field name="department" string="Bo'lim"/>
 
-                    <!-- Guruhlash -->
-                    <group expand="0" string="Guruhlash">
-                        <filter name="group_by_department" string="Bo'lim bo'yicha"
-                                context="{'group_by': 'department'}"/>
-                        <filter name="group_by_salary" string="Maosh bo'yicha"
-                                context="{'group_by': 'salary'}"/>
-                        <filter name="group_by_hire_date" string="Ishga kirgan sana bo'yicha"
-                                context="{'group_by': 'hire_date:month'}"/>
-                    </group>
-                </search>
-            </field>
-        </record>
+                <separator/>
+                <filter name="filter_sales" string="Sotuv bo'limi"
+                        domain="[('department', '=', 'sales')]"/>
+                <filter name="filter_purchase" string="Xarid bo'limi"
+                        domain="[('department', '=', 'purchase')]"/>
+                <filter name="filter_accounting" string="Buxgalteriya"
+                        domain="[('department', '=', 'accounting')]"/>
+                <filter name="filter_warehouse" string="Ombor"
+                        domain="[('department', '=', 'warehouse')]"/>
+                <filter name="filter_management" string="Rahbariyat"
+                        domain="[('department', '=', 'management')]"/>
 
-        <record id="view_uic_employee_kanban" model="ir.ui.view">
-            <field name="name">uic.employee.kanban</field>
-            <field name="model">uic.employee</field>
-            <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
-                    <field name="name"/>
-                    <field name="employee_id"/>
-                    <field name="department"/>
-                    <field name="salary"/>
-                    <field name="phone"/>
-                    <field name="email"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click" t-attf-class="oe_kanban_color_{{kanban_getcolor(record.department.raw_value)}}">
-                                <div class="o_kanban_card_header">
-                                    <strong>
-                                        <field name="name"/>
-                                    </strong>
-                                    <span class="badge badge-secondary float-right">
-                                        <field name="employee_id"/>
-                                    </span>
-                                </div>
-                                <div class="o_kanban_card_content">
-                                    <div>
-                                        <i class="fa fa-building-o mr-1"/>
-                                        <field name="department"/>
-                                    </div>
-                                    <div>
-                                        <i class="fa fa-money mr-1"/>
-                                        <field name="salary"/> so'm
-                                    </div>
-                                    <div t-if="record.phone.raw_value">
-                                        <i class="fa fa-phone mr-1"/>
-                                        <field name="phone"/>
-                                    </div>
-                                    <div t-if="record.email.raw_value">
-                                        <i class="fa fa-envelope mr-1"/>
-                                        <field name="email"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
+                <separator/>
 
-        <!-- Asosiy Action -->
-        <record id="action_uic_employee" model="ir.actions.act_window">
-            <field name="name">Xodimlar</field>
-            <field name="res_model">uic.employee</field>
-            <field name="view_mode">list,form,kanban</field>
-            <field name="search_view_id" ref="view_uic_employee_search"/>
-            <field name="context">{'default_department': 'sales'}</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Hali xodim qo'shilmagan
-                </p>
-                <p>
-                    Yangi xodim qo'shish uchun "Yaratish" tugmasini bosing.
-                </p>
-            </field>
-        </record>
+                <filter name="filter_high_salary" string="Yuqori maosh"
+                        domain="[('salary', '&gt;', 5000)]"/>
+                <filter name="filter_low_salary" string="Past maosh"
+                        domain="[('salary', '&lt;', 1000)]"/>
 
-        <!-- Menu Structure -->
-        <menuitem id="menu_uic_hr_root" name="Kadrlar boshqaruvi" sequence="30"/>
-        <menuitem id="menu_uic_employee" name="Xodimlar"
-                  parent="menu_uic_hr_root"
-                  action="action_uic_employee"
-                  sequence="1"/>
+                <separator/>
 
-    </data>
+                <group expand="0" string="Guruhlash">
+                    <filter name="group_department" string="Bo'lim bo'yicha"
+                            context="{'group_by': 'department'}"/>
+                    <filter name="group_salary" string="Maosh bo'yicha"
+                            context="{'group_by': 'salary'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_uic_employee" model="ir.actions.act_window">
+        <field name="name">Xodimlar</field>
+        <field name="res_model">uic.employee</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_uic_employee_search"/>
+        <field name="context">{'search_default_filter_sales': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Hali xodim qo'shilmagan
+            </p>
+            <p>
+                Yangi xodim qo'shish uchun "Yaratish" tugmasini bosing.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_uic_hr_root" name="Kadrlar boshqaruvi" sequence="30"/>
+    <menuitem id="menu_uic_employee" name="Xodimlar"
+              parent="menu_uic_hr_root"
+              action="action_uic_employee"
+              sequence="1"/>
 </odoo>

@@ -1,0 +1,47 @@
+
+
+<record id="view_advanced_order_form" model="ir.ui.view">
+    <field name="name">advanced.order.form</field>
+    <field name="model">sale.order</field>
+    <field name="arch" type="xml">
+        <form string="Advanced Order Management">
+            <header>
+
+                <button name="duplicate_order"
+                        type="object"
+                        string="Nusxalash"
+                        class="btn-secondary"/>
+
+
+                <button name="update_order_status"
+                        type="object"
+                        string="Holatni yangilash"
+                        args="['confirmed']"
+                        class="btn-primary"/>
+
+
+                <button name="safe_delete"
+                        type="object"
+                        string="Xavfsiz o'chirish"
+                        class="btn-danger"
+                        confirm="Rostdan ham o‘chirmoqchimisiz?"/>
+
+
+                <button name="apply_discount"
+                        type="object"
+                        string="Chegirma qo‘llash"
+                        class="oe_highlight"/>
+            </header>
+
+            <sheet>
+
+                <group>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total"/>
+                    <field name="state"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>

@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    # _inherit = 'res.partner'
 
     mobile = fields.Char(string="Mobil Telefon")
 

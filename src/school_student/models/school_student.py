@@ -12,7 +12,7 @@ class Student(models.Model):
         default=lambda self: self.env['ir.sequence'].next_by_code('school.student')
     )
 
-    name = fields.Char("Ism", max_length=50, required=True, tracking=True,)
+    name = fields.Char("Ism", required=True, tracking=True,)
     photo = fields.Image("Photo", max_width=720, max_height=1024)
     birth_day = fields.Date("Tug'ilgan sana", tracking=True,)
     age = fields.Integer("Yoshi", compute='_compute_age', store=True)
@@ -21,8 +21,8 @@ class Student(models.Model):
     email = fields.Char("Email")
     score = fields.Float("Imtihon bahosi", digits=(3, 2), tracking=True,)
     rating = fields.Integer("Reyting", tracking=True,)
-    description = fields.Text("Qo'shimcha izoh", max_length=200, translate=True)
-    bio = fields.Text("Bio", max_length=10000)
+    description = fields.Text("Qo'shimcha izoh",translate=True)
+    bio = fields.Text("Bio")
     profile = fields.Html("Profil sahifasi")
     passport_number = fields.Char("Pasport raqami",index=True, tracking=True,)
 
@@ -46,7 +46,7 @@ class Student(models.Model):
     )
 
     course_ids = fields.Many2many(
-        "course.course",
+        "course.kurslar",
         "student_course_rel",
         "student_id",
         "course_id",

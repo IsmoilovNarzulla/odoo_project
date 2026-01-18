@@ -23,27 +23,8 @@
             <field name="model">uic.customer</field>
             <field name="arch" type="xml">
                 <form string="Mijoz">
-<!--                    <header>-->
-<!--                        <button name="%(action)d" type="action" string="Ro'yxat" class="btn-secondary"/>-->
-<!--                        <button name="action_calculate_discount" type="object"-->
-<!--                                string="Chegirmani hisoblash" class="btn-primary"/>-->
-<!--                    </header>-->
 
                     <sheet>
-<!--                        <div class="oe_button_box" name="button_box">-->
-<!--                            <button class="oe_stat_button" type="action"-->
-<!--                                    icon="fa-money"-->
-<!--                                    name="%('action_related_transactions')d"-->
-<!--                                    string="Tranzaksiyalar">-->
-<!--                                <div class="o_stat_info">-->
-<!--                                    <field name="credit_limit" widget="monetary"-->
-<!--                                           options="{'currency_field': 'currency_id'}"-->
-<!--                                           class="o_stat_text"/>-->
-<!--                                    <span class="o_stat_text">Kredit limiti</span>-->
-<!--                                </div>-->
-<!--                            </button> -->-->
-<!--                        </div>-->
-
                         <group>
                             <group string="Asosiy ma'lumotlar">
                                 <field name="name" class="oe_inline" string="Mijoz nomi"/>

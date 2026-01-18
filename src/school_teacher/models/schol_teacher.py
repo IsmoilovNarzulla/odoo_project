@@ -9,15 +9,15 @@ class Teacher(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "name asc"
 
-    teacher_id = fields.Char("Teacher ID",readonly=True,
+    teacher_id = fields.Char("O'qituvchi ID",readonly=True,
         default=lambda self: self.env['ir.sequence'].next_by_code('school.teacher')
     )
 
     name = fields.Char("F.I.Sh.", required=True,tracking=True,)
-    specialty = fields.Char("Mutaxassisligi", max_length=100, required=True,tracking=True,)
-    bio = fields.Text("Tarjimai hol", maxlength=1000)
+    specialty = fields.Char("Mutaxassisligi", required=True,tracking=True,)
+    bio = fields.Text("Tarjimai hol")
     phone_number = fields.Char("Tel raqami xalqaro formatda kriting", required=True,tracking=True,)
-    email = fields.Char("Email", blank=True,null=True)
+    email = fields.Char("Email",tracking=True,)
     profile = fields.Html("Profil sahifasi")
     status = fields.Selection([
         ('active', 'Faol'),
@@ -26,8 +26,7 @@ class Teacher(models.Model):
     ], string="Holati", default='active')
 
     course_ids = fields.One2many(
-        "course.course",
-        "teacher_id",
+        "course.kurslar",
         string="O'qitayotgan kurslar"
     )
 

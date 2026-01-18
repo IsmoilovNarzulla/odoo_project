@@ -1,0 +1,24 @@
+
+<odoo>
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="apply_discount"
+                        string="10% chegirma qo'llash"
+                        type="object"
+                        class="btn-primary"
+                        groups="sales_team.group_sale_manager"/>
+
+                <button name="validate_and_approve"
+                        string="Tasdiqlash"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Buyurtmani tasdiqlashni xohlaysizmi?"
+                        groups="sales_team.group_sale_manager"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

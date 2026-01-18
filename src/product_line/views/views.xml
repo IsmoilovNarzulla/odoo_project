@@ -7,9 +7,9 @@
       <field name="model">product_line.product_line</field>
       <field name="arch" type="xml">
         <list>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+<!--          <field name="name"/>-->
+<!--          <field name="value"/>-->
+<!--          <field name="value2"/>-->
         </list>
       </field>
     </record>

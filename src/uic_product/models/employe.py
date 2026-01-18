@@ -5,7 +5,7 @@ from odoo import models, fields, api
 class Employee(models.Model):
     _name = 'uic.employee'
     _description = 'Xodim'
-    _inherits = {'uic.person': 'person_id'}
+    _inherit = {'uic.person': 'person_id'}
 
     person_id = fields.Many2one(
         'uic.person',

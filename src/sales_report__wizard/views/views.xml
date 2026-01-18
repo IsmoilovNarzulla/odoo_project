@@ -1,0 +1,81 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="sales_report__wizard.list">
+      <field name="name">SalesReport_Wizard list</field>
+      <field name="model">sales_report__wizard.sales_report__wizard</field>
+      <field name="arch" type="xml">
+        <form>
+          <div class="oe_title">
+            <h1>Sotuv hisoboti parametrlari</h1>
+          </div>
+
+          <group>
+            <group>
+              <field name="date_from" class="oe_inline" string="Boshlanish sanasi"/>
+              <field name="date_to" class="oe_inline" string="Tugash sanasi"/>
+            </group>
+
+            <group>
+              <field name="report_type" widget="radio" string="Hisobot turi"/>
+            </group>
+          </group>
+
+          <footer>
+            <button name="action_generate_report" string="Hisobotni ko'rish" type="object" class="btn-primary"/>
+            <button name="action_print_pdf" string="PDF chop etish" type="object" class="btn-default"/>
+            <button string="Bekor qilish" special="cancel" class="btn-secondary"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="sales_report__wizard.action_window">
+      <field name="name">Sotuv hisoboti</field>
+      <field name="res_model">sales_report__wizard.sales_report__wizard</field>
+      <field name="view_mode">list,form</field>
+      <field name="target">new</field>
+      <field name="type">ir.actions.act_window</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="sales_report__wizard.action_server">
+      <field name="name">SalesReport_Wizard server</field>
+      <field name="model_id" ref="model_sales_report__wizard_sales_report__wizard"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="SalesReport_Wizard" id="sales_report__wizard.menu_root"/>
+
+
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="sales_report__wizard.menu_1" parent="sales_report__wizard.menu_root"/>
+    <menuitem name="Menu 2" id="sales_report__wizard.menu_2" parent="sales_report__wizard.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="sales_report__wizard.menu_1_list" parent="sales_report__wizard.menu_1"
+              action="sales_report__wizard.action_window"/>
+    <menuitem name="Server to list" id="sales_report__wizard" parent="sales_report__wizard.menu_2"
+              action="sales_report__wizard.action_server"/>
+
+  </data>
+</odoo>

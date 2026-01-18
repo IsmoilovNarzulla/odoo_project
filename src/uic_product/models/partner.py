@@ -4,7 +4,7 @@ from odoo import models, fields
 class Partner(models.Model):
     _name = 'uic.partner'
     _description = 'Hamkor'
-    _inherits = {'uic.person': 'person_id'}
+    _inherit = {'uic.person': 'person_id'}
 
     person_id = fields.Many2one(
         'uic.person',

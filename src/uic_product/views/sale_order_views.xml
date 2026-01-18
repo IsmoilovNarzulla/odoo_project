@@ -26,7 +26,8 @@
 
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="action_confirm" type="object" string="Tasdiqlash" class="btn-primary" states="draft"/>
+                            <!-- O'ZGARTIRILDI: states -> invisible -->
+                            <button name="action_confirm" type="object" string="Tasdiqlash" class="btn-primary" invisible="state != 'draft'"/>
                         </div>
 
                         <div class="oe_title">

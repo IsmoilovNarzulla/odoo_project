@@ -30,7 +30,7 @@ Long description of module's purpose
     'demo': [
         'demo/demo.xml',
     ],
-    'application': True,
+    # 'application': True,
     'application': False,
     'auto_install': False,
     'license': 'LGPL-3',

@@ -1,7 +1,7 @@
 
 from odoo import models, fields, api
 
-class TrackingMixin(models.Model):
+class TrackingMixin(models.AbstractModel):
     _name = 'uic.tracking.mixin'
     _description = 'Tracking Mixin'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -18,3 +18,10 @@ class TrackingMixin(models.Model):
         readonly=True
     )
 
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['created_by'] = self.env.user.id
+            vals['created_date'] = fields.Datetime.now()
+        return super(TrackingMixin, self).create(vals_list)

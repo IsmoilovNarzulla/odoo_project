@@ -1,2 +1,2 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_school_group_school_group,school_group.school_group,model_school_group_school_group,base.group_user,1,1,1,1
+id,name,model_    _name = "school_group":id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_group_school_group,school_group.school_group,model_    _name = "school_group",base.group_user,1,1,1,1
