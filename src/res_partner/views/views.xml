@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="res_partner.list">
+      <field name="name">ResPartner list</field>
+      <field name="model">res_partner.res_partner</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="res_partner.action_window">
+      <field name="name">ResPartner window</field>
+      <field name="res_model">res_partner.res_partner</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="res_partner.action_server">
+      <field name="name">ResPartner server</field>
+      <field name="model_id" ref="model_res_partner_res_partner"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="ResPartner" id="res_partner.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="res_partner.menu_1" parent="res_partner.menu_root"/>
+    <menuitem name="Menu 2" id="res_partner.menu_2" parent="res_partner.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="res_partner.menu_1_list" parent="res_partner.menu_1"
+              action="res_partner.action_window"/>
+    <menuitem name="Server to list" id="res_partner" parent="res_partner.menu_2"
+              action="res_partner.action_server"/>
+-->
+  </data>
+</odoo>

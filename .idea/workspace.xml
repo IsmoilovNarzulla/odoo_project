@@ -5,14 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40fef027-d851-43e4-8efa-6fcf6b590b70" name="Changes" comment="odoo darslari6">
-      <change afterPath="$PROJECT_DIR$/src/education_group/models/report_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/education_group/views/report_actions.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/education_group/views/report_assets.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/__manifest__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/controllers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/controllers/controllers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/demo/demo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/models/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/security/ir.model.access.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/views/templates.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res_partner/views/views.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odoo" beforeDir="false" afterPath="$PROJECT_DIR$/odoo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odoo/addons/web/static/src/model/relational_model/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/odoo/addons/web/static/src/model/relational_model/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odoo/odoo/addons/base/tests/test_osv.py" beforeDir="false" afterPath="$PROJECT_DIR$/odoo/odoo/addons/base/tests/test_osv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/education_group/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/education_group/security/ir.model.access.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +76,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "user12",
+    "git-widget-placeholder": "user13",
     "last_opened_file_path": "/home/narzulla/odoo_project/third-party",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -149,7 +157,7 @@
       <workItem from="1768541188511" duration="29477000" />
       <workItem from="1768633110140" duration="36370000" />
       <workItem from="1768710047282" duration="4288000" />
-      <workItem from="1768718276432" duration="20226000" />
+      <workItem from="1768718276432" duration="24472000" />
     </task>
     <task id="LOCAL-00001" summary="odoo darslari1">
       <option name="closed" value="true" />
