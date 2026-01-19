@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Rule 1: Users can only see AVAILABLE books -->
+        <record id="rule_library_book_user" model="ir.rule">
+            <field name="name">Library Book: User Access</field>
+            <field name="model_id" ref="model_library_book"/>
+            <field name="groups" eval="[(4, ref('group_library_user'))]"/>
+            <field name="domain_force">
+                [('status', '=', 'available'), ('available_quantity', '>', 0)]
+            </field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Rule 2: Librarians can see all books except lost/damaged -->
+        <record id="rule_library_book_librarian" model="ir.rule">
+            <field name="name">Library Book: Librarian Access</field>
+            <field name="model_id" ref="model_library_book"/>
+            <field name="groups" eval="[(4, ref('group_library_librarian'))]"/>
+            <field name="domain_force">
+                [('status', 'not in', ['lost', 'damaged'])]
+            </field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Rule 3: Managers can see ALL books -->
+        <record id="rule_library_book_manager" model="ir.rule">
+            <field name="name">Library Book: Manager Access</field>
+            <field name="model_id" ref="model_library_book"/>
+            <field name="groups" eval="[(4, ref('group_library_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>  <!-- True domain -->
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        
+        <!-- MEMBER RECORD RULES -->
+        
+
+        <!-- Rule 4: Users can only see ACTIVE members -->
+        <record id="rule_library_member_user" model="ir.rule">
+            <field name="name">Library Member: User Access</field>
+            <field name="model_id" ref="model_library_member"/>
+            <field name="groups" eval="[(4, ref('group_library_user'))]"/>
+            <field name="domain_force">[('membership_status', '=', 'active')]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Rule 5: Librarians can see all except cancelled members -->
+        <record id="rule_library_member_librarian" model="ir.rule">
+            <field name="name">Library Member: Librarian Access</field>
+            <field name="model_id" ref="model_library_member"/>
+            <field name="groups" eval="[(4, ref('group_library_librarian'))]"/>
+            <field name="domain_force">[('membership_status', '!=', 'cancelled')]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        
+        <!-- BORROW RECORD RULES -->
+        
+
+        <!-- Rule 6: Users can only see their own borrowings -->
+        <record id="rule_library_borrow_user" model="ir.rule">
+            <field name="name">Library Borrow: User Access</field>
+            <field name="model_id" ref="model_library_borrow"/>
+            <field name="groups" eval="[(4, ref('group_library_user'))]"/>
+            <field name="domain_force">[('member_id', '=', user.id)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Rule 7: Librarians can see borrowings they processed -->
+        <record id="rule_library_borrow_librarian" model="ir.rule">
+            <field name="name">Library Borrow: Librarian Access</field>
+            <field name="model_id" ref="model_library_borrow"/>
+            <field name="groups" eval="[(4, ref('group_library_librarian'))]"/>
+            <field name="domain_force">[('librarian_id', '=', user.id)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Rule 8: Accountants can see borrowings with fines -->
+        <record id="rule_library_borrow_accountant" model="ir.rule">
+            <field name="name">Library Borrow: Accountant Access</field>
+            <field name="model_id" ref="model_library_borrow"/>
+            <field name="groups" eval="[(4, ref('group_library_accountant'))]"/>
+            <field name="domain_force">[('fine_amount', '>', 0)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        
+        <!-- SPECIAL RULES -->
+        
+
+        <!-- Rule 9: Prevent users from modifying cost price -->
+        <record id="rule_library_book_cost_price" model="ir.rule">
+            <field name="name">Library Book: Cost Price Protection</field>
+            <field name="model_id" ref="model_library_book"/>
+            <field name="groups" eval="[
+                (4, ref('group_library_user')),
+                (4, ref('group_library_librarian'))
+            ]"/>
+            <field name="domain_force">[('cost_price', '=', False)]</field>  <!-- Hide cost price -->
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Rule 10: Only managers can delete records -->
+        <record id="rule_library_no_delete" model="ir.rule">
+            <field name="name">Library: No Delete Rule</field>
+            <field name="model_id" ref="model_library_book"/>
+            <field name="groups" eval="[
+                (4, ref('group_library_user')),
+                (4, ref('group_library_librarian')),
+                (4, ref('group_library_accountant'))
+            ]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+    </data>
+</odoo>

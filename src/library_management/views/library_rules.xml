@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- 1. ACTION -->
+    <record id="action_library_rules" model="ir.actions.act_window">
+        <field name="name">Library Rules</field>
+        <field name="res_model">library.rules</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- 2. FORM VIEW (ATTRS'SIZ) -->
+    <record id="library_rules_view_form" model="ir.ui.view">
+        <field name="name">library.rules.form</field>
+        <field name="model">library.rules</field>
+        <field name="arch" type="xml">
+            <form string="Library Rules">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="rule_type"/>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                    </group>
+
+                    <!-- Simple grouping without attrs -->
+                    <group string="Borrowing Rules">
+                        <field name="max_books_per_member"/>
+                        <field name="borrow_duration_days"/>
+                        <field name="max_renewals"/>
+                    </group>
+
+                    <group string="Fine Rules">
+                        <field name="fine_per_day"/>
+                        <field name="grace_period_days"/>
+                        <field name="max_fine_amount"/>
+                    </group>
+
+                    <group string="Membership Rules">
+                        <field name="student_membership_fee"/>
+                        <field name="teacher_membership_fee"/>
+                        <field name="regular_membership_fee"/>
+                        <field name="premium_membership_fee"/>
+                        <field name="membership_duration_months"/>
+                    </group>
+
+                    <group string="Book Rules">
+                        <field name="minimum_book_quantity"/>
+                        <field name="reservation_duration_days"/>
+                    </group>
+
+                    <group>
+                        <field name="domain_filter" placeholder="e.g., [('active', '=', True)]"/>
+                    </group>
+
+                    <group>
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 3. LIST VIEW -->
+    <record id="library_rules_view_list" model="ir.ui.view">
+        <field name="name">library.rules.list</field>
+        <field name="model">library.rules</field>
+        <field name="arch" type="xml">
+            <list string="Library Rules">
+                <field name="name"/>
+                <field name="rule_type"/>
+                <field name="active"/>
+                <field name="sequence"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- 4. SEARCH VIEW -->
+    <record id="library_rules_view_search" model="ir.ui.view">
+        <field name="name">library.rules.search</field>
+        <field name="model">library.rules</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="rule_type"/>
+                <field name="active"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- 5. MENUITEM -->
+    <menuitem id="library_rules_menu" name="Rules"
+              parent="library_config_menu" sequence="10"
+              action="action_library_rules"/>
+</data>
+</odoo>

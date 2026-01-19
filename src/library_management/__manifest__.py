@@ -1,38 +1,44 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "document",
+    'name': "library_management",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "library_management",
 
     'description': """
 Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "Narzulla",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Services/Library',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','school_student'],
+    'depends': ['base','mail'],
 
     # always loaded
     'data': [
+        'security/library_groups.xml',
         'security/ir.model.access.csv',
+        'security/library_record_rules.xml',
         'views/views.xml',
+        'views/library_menus.xml',
         'views/templates.xml',
+        'views/library_rules.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
-    # 'application': True,
-    'application': False,
+    'application': True,
     'auto_install': False,
     'license': 'LGPL-3',
+    'price': 0,
+    'currency': 'USD',
 }
 

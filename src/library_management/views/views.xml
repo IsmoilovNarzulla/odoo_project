@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- Kitoblar uchun action -->
+    <record id="action_library_book" model="ir.actions.act_window">
+      <field name="name">Books</field>
+      <field name="res_model">library.book</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Qarzlar uchun action -->
+    <record id="action_library_borrow" model="ir.actions.act_window">
+      <field name="name">Borrow Records</field>
+      <field name="res_model">library.borrow</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Main Book Form View -->
+    <record id="library_book_view_form" model="ir.ui.view">
+      <field name="name">library.book.form</field>
+      <field name="model">library.book</field>
+      <field name="arch" type="xml">
+        <form string="Book">
+          <header>
+            <button name="action_mark_lost" string="Mark as Lost" type="object"
+                    class="btn-danger" groups="group_library_librarian"/>
+            <button name="action_mark_damaged" string="Mark as Damaged" type="object"
+                    class="btn-warning" groups="group_library_librarian"/>
+            <field name="status" widget="statusbar" statusbar_visible="available,borrowed,reserved,lost,damaged"/>
+          </header>
+
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <!-- Different buttons for different groups -->
+              <button name="%(action_library_borrow)d" string="Borrow This Book" type="action"
+                      class="btn-primary" groups="group_library_librarian"/>
+            </div>
+
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Book Title"/>
+              </h1>
+              <h2>
+                <field name="author_id" placeholder="Author"/>
+              </h2>
+            </div>
+
+            <group>
+              <group>
+                <field name="isbn"/>
+                <field name="category_id"/>
+                <field name="publish_date"/>
+                <field name="publisher_id"/>
+              </group>
+              <group>
+                <field name="pages"/>
+                <field name="edition"/>
+                <field name="price" groups="group_library_librarian,group_library_manager,group_library_accountant"/>
+                <field name="cost_price" groups="group_library_manager"/>
+              </group>
+            </group>
+
+            <notebook>
+              <page string="Inventory">
+                <group>
+                  <group>
+                    <field name="quantity"/>
+                    <field name="available_quantity" widget="progressbar"/>
+                    <field name="location"/>
+                  </group>
+                </group>
+              </page>
+
+              <page string="Description">
+                <field name="image" widget="image" class="oe_avatar"/>
+              </page>
+
+              <!-- Only for managers -->
+              <page string="Financial" groups="group_library_manager,group_library_accountant">
+                <group>
+                  <field name="cost_price"/>
+                  <field name="price"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- Book list View -->
+    <record id="library_book_view_list" model="ir.ui.view">
+      <field name="name">library.book.list</field>
+      <field name="model">library.book</field>
+      <field name="arch" type="xml">
+        <list string="Books" decoration-info="status=='reserved'" decoration-danger="status in ['lost','damaged']">
+          <field name="name"/>
+          <field name="author_id"/>
+          <field name="category_id"/>
+          <field name="isbn"/>
+          <field name="quantity"/>
+          <field name="available_quantity" widget="progressbar" options="{'max_value': 'quantity'}"/>
+          <field name="status"/>
+          <field name="price" groups="group_library_librarian,group_library_manager,group_library_accountant"/>
+          <field name="cost_price" groups="group_library_manager"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- Book Form View - Different views for different groups -->
+
+    <!-- Form view for Users -->
+    <record id="library_book_view_form_user" model="ir.ui.view">
+      <field name="name">library.book.form.user</field>
+      <field name="model">library.book</field>
+      <field name="inherit_id" ref="library_book_view_form"/>
+      <field name="arch" type="xml">
+        <!-- Hide sensitive fields -->
+        <xpath expr="//field[@name='cost_price']" position="replace"/>
+        <xpath expr="//field[@name='price']" position="replace"/>
+        <xpath expr="//button[@name='action_mark_lost']" position="replace"/>
+        <xpath expr="//button[@name='action_mark_damaged']" position="replace"/>
+      </field>
+    </record>
+
+    <!-- Form view for Librarians -->
+    <record id="library_book_view_form_librarian" model="ir.ui.view">
+      <field name="name">library.book.form.librarian</field>
+      <field name="model">library.book</field>
+      <field name="inherit_id" ref="library_book_view_form"/>
+      <field name="arch" type="xml">
+        <!-- Show price but hide cost price -->
+        <xpath expr="//field[@name='cost_price']" position="replace"/>
+        <xpath expr="//field[@name='price']" position="attributes">
+          <attribute name="readonly">0</attribute>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- BORROW VIEWS -->
+  <!-- Asosiy borrow form view -->
+  <record id="library_borrow_view_form" model="ir.ui.view">
+    <field name="name">library.borrow.form</field>
+    <field name="model">library.borrow</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="book_id"/>
+            <field name="member_id"/>
+            <field name="borrow_date"/>
+            <field name="due_date"/>
+            <field name="return_date"/>
+            <field name="fine_amount"/>
+            <field name="fine_paid"/>
+            <field name="state"/>
+            <button name="action_pay_fine" string="Pay Fine" type="object" class="btn-primary"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+    <!-- Special form view for Accountants -->
+  <record id="library_borrow_view_form_accountant" model="ir.ui.view">
+    <field name="name">library.borrow.form.accountant</field>
+    <field name="model">library.borrow</field>
+    <field name="inherit_id" ref="library_borrow_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//form" position="attributes">
+        <attribute name="create">1</attribute>
+        <attribute name="edit">1</attribute>
+        <attribute name="delete">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='fine_amount']" position="attributes">
+        <attribute name="readonly">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='fine_paid']" position="attributes">
+        <attribute name="readonly">1</attribute>
+      </xpath>
+      <xpath expr="//button[@name='action_pay_fine']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+    </field>
+  </record>
+
+
+    <!-- SEARCH VIEWS -->
+
+
+    <record id="library_book_view_search" model="ir.ui.view">
+      <field name="name">library.book.search</field>
+      <field name="model">library.book</field>
+      <field name="arch" type="xml">
+        <search string="Search Books">
+          <field name="name"/>
+          <field name="author_id"/>
+          <field name="category_id"/>
+          <field name="isbn"/>
+          <field name="status"/>
+
+          <!-- Filter for different groups -->
+          <filter name="available" string="Available" domain="[('available_quantity', '&gt;', 0)]"/>
+          <filter name="borrowed" string="Borrowed" domain="[('status', '=', 'borrowed')]"
+                  groups="group_library_librarian"/>
+          <filter name="overdue" string="Overdue" domain="[('borrow_ids.due_date', '&lt;', context_today()), ('borrow_ids.state', '=', 'borrowed')]"
+                  groups="group_library_librarian"/>
+
+          <!-- Group by -->
+          <group expand="0" string="Group By">
+            <filter name="group_by_category" string="Category" context="{'group_by': 'category_id'}"/>
+            <filter name="group_by_author" string="Author" context="{'group_by': 'author_id'}"
+                    groups="group_library_librarian"/>
+            <filter name="group_by_status" string="Status" context="{'group_by': 'status'}"
+                    groups="group_library_librarian"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- ========== AUTHOR VIEWS ========== -->
+    <record id="library_author_view_form" model="ir.ui.view">
+      <field name="name">library.author.form</field>
+      <field name="model">library.author</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="birth_date"/>
+              <field name="nationality"/>
+              <field name="biography"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="library_author_view_list" model="ir.ui.view">
+      <field name="name">library.author.list</field>
+      <field name="model">library.author</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="nationality"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- ========== CATEGORY VIEWS ========== -->
+    <record id="library_category_view_form" model="ir.ui.view">
+      <field name="name">library.category.form</field>
+      <field name="model">library.category</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="code"/>
+              <field name="parent_id"/>
+              <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="library_category_view_list" model="ir.ui.view">
+      <field name="name">library.category.list</field>
+      <field name="model">library.category</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="code"/>
+          <field name="parent_id"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- ========== PUBLISHER VIEWS ========== -->
+    <record id="library_publisher_view_form" model="ir.ui.view">
+      <field name="name">library.publisher.form</field>
+      <field name="model">library.publisher</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="address"/>
+              <field name="contact_person"/>
+              <field name="email"/>
+              <field name="phone"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="library_publisher_view_list" model="ir.ui.view">
+      <field name="name">library.publisher.list</field>
+      <field name="model">library.publisher</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="contact_person"/>
+          <field name="email"/>
+        </list>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40fef027-d851-43e4-8efa-6fcf6b590b70" name="Changes" comment="odoo darslari6">
-      <change afterPath="$PROJECT_DIR$/src/res_partner/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/controllers/controllers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/demo/demo.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/models/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/security/ir.model.access.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/views/templates.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res_partner/views/views.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library_management/models/library_rules.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library_management/security/library_groups.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library_management/security/library_record_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library_management/views/library_menus.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library_management/views/library_rules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odoo" beforeDir="false" afterPath="$PROJECT_DIR$/odoo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odoo/addons/web/static/src/model/relational_model/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/odoo/addons/web/static/src/model/relational_model/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odoo/odoo/addons/base/tests/test_osv.py" beforeDir="false" afterPath="$PROJECT_DIR$/odoo/odoo/addons/base/tests/test_osv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/education_group/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/education_group/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/document/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/__manifest__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,30 +63,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "user13",
-    "last_opened_file_path": "/home/narzulla/odoo_project/third-party",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;user13&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/narzulla/odoo_project/third-party&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/custom_products/views" />
@@ -157,7 +151,8 @@
       <workItem from="1768541188511" duration="29477000" />
       <workItem from="1768633110140" duration="36370000" />
       <workItem from="1768710047282" duration="4288000" />
-      <workItem from="1768718276432" duration="24472000" />
+      <workItem from="1768718276432" duration="31620000" />
+      <workItem from="1768798701508" duration="27974000" />
     </task>
     <task id="LOCAL-00001" summary="odoo darslari1">
       <option name="closed" value="true" />

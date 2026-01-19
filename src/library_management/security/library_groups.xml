@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Category for grouping in Settings -->
+    <record id="module_category_library" model="ir.module.category">
+        <field name="name">Library Management</field>
+        <field name="description">Library management system security groups</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- LEVEL 1: BASIC USER -->
+    <record id="group_library_user" model="res.groups">
+        <field name="name">Library User</field>
+        <field name="category_id" ref="module_category_library"/>
+        <field name="comment">Can view books and members. Basic read-only access.</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- LEVEL 2: LIBRARIAN -->
+    <record id="group_library_librarian" model="res.groups">
+        <field name="name">Library Librarian</field>
+        <field name="category_id" ref="module_category_library"/>
+        <field name="comment">Can manage books, members, and borrowing operations.</field>
+        <field name="implied_ids" eval="[(4, ref('group_library_user'))]"/>
+    </record>
+
+    <!-- LEVEL 2: ACCOUNTANT -->
+    <record id="group_library_accountant" model="res.groups">
+        <field name="name">Library Accountant</field>
+        <field name="category_id" ref="module_category_library"/>
+        <field name="comment">Can view financial data and manage fines.</field>
+        <field name="implied_ids" eval="[(4, ref('group_library_user'))]"/>
+    </record>
+
+    <!-- LEVEL 3: MANAGER -->
+    <record id="group_library_manager" model="res.groups">
+        <field name="name">Library Manager</field>
+        <field name="category_id" ref="module_category_library"/>
+        <field name="comment">Full access to all library operations including settings.</field>
+        <field name="implied_ids" eval="[
+            (4, ref('group_library_librarian')),
+            (4, ref('group_library_accountant'))
+        ]"/>
+    </record>
+</odoo>

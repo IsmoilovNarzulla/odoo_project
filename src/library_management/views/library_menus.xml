@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- 1. AVVAL ACTION'LAR -->
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first book
+            </p>
+        </field>
+    </record>
+
+    <record id="action_library_member" model="ir.actions.act_window">
+        <field name="name">Members</field>
+        <field name="res_model">library.member</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_borrow" model="ir.actions.act_window">
+        <field name="name">Borrowings</field>
+        <field name="res_model">library.borrow</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_author" model="ir.actions.act_window">
+        <field name="name">Authors</field>
+        <field name="res_model">library.author</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_category" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">library.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_publisher" model="ir.actions.act_window">
+        <field name="name">Publishers</field>
+        <field name="res_model">library.publisher</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- 2. KEYIN MENU ITEM'LAR -->
+    <!-- Main Menu -->
+    <menuitem id="library_menu_root" name="Library" sequence="10"/>
+
+    <!-- Configuration Menu (Only for Managers) -->
+    <menuitem id="library_config_menu" name="Configuration"
+              parent="library_menu_root" sequence="100"
+              groups="group_library_manager"/>
+
+    <!-- Books Menu -->
+    <menuitem id="library_book_menu" name="Books"
+              parent="library_menu_root" sequence="10"/>
+    <menuitem id="library_book_submenu" name="All Books"
+              parent="library_book_menu" action="action_library_book"/>
+
+    <!-- Members Menu -->
+    <menuitem id="library_member_menu" name="Members"
+              parent="library_menu_root" sequence="20"/>
+    <menuitem id="library_member_submenu" name="All Members"
+              parent="library_member_menu" action="action_library_member"/>
+
+    <!-- Borrowing Menu (Only for Librarians+) -->
+    <menuitem id="library_borrow_menu" name="Borrowings"
+              parent="library_menu_root" sequence="30"
+              groups="group_library_librarian"/>
+    <menuitem id="library_borrow_submenu" name="All Borrowings"
+              parent="library_borrow_menu" action="action_library_borrow"/>
+
+    <!-- Catalog Menu -->
+    <menuitem id="library_catalog_menu" name="Catalog"
+              parent="library_menu_root" sequence="40"/>
+    <menuitem id="library_author_submenu" name="Authors"
+              parent="library_catalog_menu" action="action_library_author"/>
+    <menuitem id="library_category_submenu" name="Categories"
+              parent="library_catalog_menu" action="action_library_category"/>
+    <menuitem id="library_publisher_submenu" name="Publishers"
+              parent="library_catalog_menu" action="action_library_publisher"/>
+
+    <!-- Reports Menu (Only for Managers+) -->
+    <menuitem id="library_reports_menu" name="Reports"
+              parent="library_menu_root" sequence="50"
+              groups="group_library_manager"/>
+
+</data>
+</odoo>
